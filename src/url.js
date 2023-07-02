@@ -1,0 +1,1 @@
+export const BASE_URL = "https://hollas-price-management-backend.onrender.com"
