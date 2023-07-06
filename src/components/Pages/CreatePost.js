@@ -1,7 +1,6 @@
 import {useState} from "react";
 import {useEffect} from "react";
-import { Link, Navigate } from "react-router-dom";
-import Select from 'react-select';
+import {Navigate } from "react-router-dom";
 import {BASE_URL} from "../../url";
 
 function CreatePost() {
@@ -62,7 +61,7 @@ function CreatePost() {
     data.set('brandName', brandName);
     data.set('categoryName', categoryName);
     ev.preventDefault();
-    const response = await fetch(`${BASE_URL}post`, {
+    const response = await fetch(`${BASE_URL}/post`, {
       method: 'POST',
       body: data,
       credentials: 'include',
@@ -73,7 +72,7 @@ function CreatePost() {
   }
 
   if (redirect) {
-    return <Navigate to={'/'} />
+    return <Navigate to={'/getProductOnBrandAndCategory'} />
   }
 
   if(categoryInfo && brandInfo){

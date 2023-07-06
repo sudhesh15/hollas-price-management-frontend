@@ -23,7 +23,7 @@ function CreateCategory() {
   }
 
   if (redirect) {
-    return <Navigate to={'/'} />
+    return <Navigate to={'/category'} />
   }
 
   return (

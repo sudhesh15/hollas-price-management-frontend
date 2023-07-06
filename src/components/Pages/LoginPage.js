@@ -1,6 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
-import {useContext, useState } from "react";
-import {UserContext} from "../../UserContext";
+import { useState } from "react";
 import {BASE_URL} from "../../url";
 console.log("BASE_URL", BASE_URL)
 
@@ -8,7 +6,6 @@ function LoginPage() {
   const [username, setUserName] = useState('');
   const [password, setpassword] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const {setUserInfo} = useContext(UserContext);
   
 
   async function login(ev){
@@ -23,10 +20,8 @@ function LoginPage() {
 
       if (response.ok) {
         response.json().then(userInfo => {
-          setUserInfo(userInfo);
+          localStorage.setItem('isLoggedIn', true);
           setRedirect(true);
-          const html = `<script>window.location.href = '/';</script>`;
-          response.send(html);
         });
       } else{
         alert("Wrong Credentials !")
@@ -35,7 +30,7 @@ function LoginPage() {
   }
 
   if(redirect){
-    return <Navigate to={'/'} />
+    window.location.href = "/home";
   }
 
   return (

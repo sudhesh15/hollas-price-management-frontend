@@ -1,20 +1,8 @@
 import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { UserContext } from "../UserContext";
 import 'font-awesome/css/font-awesome.min.css';
 import { BASE_URL } from "../url";
 
 export default function Header() {
-  const { setUserInfo, userInfo } = useContext(UserContext);
-  useEffect(() => {
-    fetch(`${BASE_URL}/profile`, {
-      credentials: 'include',
-    }).then(response => {
-      response.json().then(userInfo => {
-        setUserInfo(userInfo);
-      });
-    });
-  }, []);
 
   function logout() {
     fetch(`${BASE_URL}/logout`, {
@@ -22,7 +10,8 @@ export default function Header() {
       method: 'POST',
     })
       .then(() => {
-        setUserInfo(null);
+        localStorage.setItem("isLoggedIn",false)
+        console.log("localstorage value IN HEADER", localStorage.getItem("isLoggedIn"))
         window.location.reload();
       })
       .catch(error => {
@@ -30,24 +19,22 @@ export default function Header() {
       });
   }
 
-  const username = userInfo?.username;
+  let isLoggedIn = localStorage.getItem("isLoggedIn");
+  console.log("isLoggedIn value ===>", isLoggedIn)
 
   return (
     <header>
-      <Link to="/home" className="logo"><span className="fontColor">H</span>OLLA'S TV CENTER</Link>
-      <nav>
-        {username && (
-          <>
-            <button className='addPrdBtn'><Link to="/create">ADD PRODUCT</Link></button>
-            <button><a onClick={logout} className="logout">LOGOUT</a></button>
-          </>
-        )}
-        {!username && (
-          <>
-            <button><Link to="/login">LOGIN</Link></button>
-          </>
-        )}
-      </nav>
-    </header>
+    <Link to="/home" className="logo"><span className="fontColor">H</span>OLLA'S TV CENTER</Link>
+    <nav>
+      {isLoggedIn === "true" ? (
+        <>
+          <button className='addPrdBtn'><Link to="/create">ADD PRODUCT</Link></button>
+          <button><a onClick={logout} className="logout">LOGOUT</a></button>
+        </>
+      ) : (
+        <button><Link to="/login">LOGIN</Link></button>
+      )}
+    </nav>
+  </header>
   );
 }

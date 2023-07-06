@@ -477,7 +477,7 @@ tr:nth-child(even) {
 
 @media only screen and (max-width: 600px) {
   .catTitle {
-    padding: 70px 0;
+    padding: 60px 0;
     color: #fff;
     font-size: 20px !important;
   }

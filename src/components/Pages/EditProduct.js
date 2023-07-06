@@ -89,7 +89,7 @@ function EditProduct() {
   }, []);
 
   if (redirect) {
-    return <Navigate to={'/'} />
+    return <Navigate to={'/getProductOnBrandAndCategory'} />
   }
 
   if(categoryInfo && brandInfo){

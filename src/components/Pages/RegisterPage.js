@@ -10,7 +10,7 @@ function RegisterPage() {
 
   async function register(ev){
     ev.preventDefault();
-    const response = await fetch(`${BASE_URL}register`,{
+    const response = await fetch(`${BASE_URL}/register`,{
       method: 'POST',
       body : JSON.stringify({firstName, lastName, dateOfBirth, username, password}),
       headers: {'Content-type': 'application/JSON'}
@@ -29,7 +29,7 @@ function RegisterPage() {
         <input type="text" placeholder="FIRST NAME" className="firstName" value={firstName} onChange={ev => setFirstName(ev.target.value)} required/>
         <input type="text" placeholder="LAST NAME" className="lastName" value={lastName} onChange={ev => setLastName(ev.target.value)} required/>
         <input type="text" placeholder="DATE OF BIRTH" className="dateOfBirth" onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")} value={dateOfBirth} onChange={ev => setDateOfBirth(ev.target.value)} required/>
-        <input type="email" placeholder="EMAIL ID" className="username" value={username} onChange={ev => setUserName(ev.target.value)} required/>
+        <input type="text" placeholder="USER NAME" className="username" value={username} onChange={ev => setUserName(ev.target.value)} required/>
         <input type="password" placeholder="PASSWORD" className="password" value={password} onChange={ev => setpassword(ev.target.value)} required/>
         <button>Register</button>
       </div>

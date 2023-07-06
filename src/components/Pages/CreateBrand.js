@@ -23,7 +23,7 @@ function CreateBrand() {
   }
 
   if (redirect) {
-    return <Navigate to={'/'} />
+    return <Navigate to={'/brand'} />
   }
 
   return (

@@ -1,9 +1,9 @@
-import ProductsPage from './ProductsPage';
+import LoginPage from './LoginPage';
 
 function IndexPage() {
     return (
       <>
-      <ProductsPage />
+      <LoginPage />
       </>
     )
   
